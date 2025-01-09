@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BillingDAO">
+
+ 	<select id="selectList" resultType="egovframework.let.billing.service.BillingVO">
+		SELECT sn, expln, use_amt, use_ymd, prcs_yn, prcs_dt
+		FROM billing.t_billing
+		ORDER BY prcs_yn, use_ymd
+ 	</select>
+
+	<select id="selectStats" parameterType="String" resultType="egovframework.let.billing.service.BillingVO">
+		SELECT 	LEFT(use_ymd, 6) as use_ymd, sum(use_amt) as use_amt 
+		FROM billing.t_billing
+		WHERE use_ymd LIKE #{value} || '%'
+		GROUP BY LEFT(use_ymd, 6)
+		ORDER BY use_ymd
+	</select>
+ 	
+	<insert id="insert" parameterType="egovframework.let.billing.service.BillingVO" useGeneratedKeys="true" keyProperty="sn">
+		INSERT INTO billing.t_billing
+			( expln, use_amt, use_ymd )
+		VALUES
+			( #{expln}, #{useAmt}, #{useYmd} )
+	</insert>
+
+	<update id="updatePrcs">
+		UPDATE billing.t_billing
+		SET prcs_yn='Y'::bpchar, prcs_dt=NOW()
+		WHERE sn=#{sn}
+	</update>
+</mapper>

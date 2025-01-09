@@ -73,10 +73,6 @@ public class EgovBBSUseInfoManageApiController {
 	@Resource(name = "EgovBBSAttributeManageService")
 	private EgovBBSAttributeManageService bbsAttrbService;
 
-	/** DefaultBeanValidator */
-	@Autowired
-	private DefaultBeanValidator beanValidator;
-
 	/** EgovMessageSource */
 	@Resource(name = "egovMessageSource")
 	EgovMessageSource egovMessageSource;
@@ -258,14 +254,6 @@ public class EgovBBSUseInfoManageApiController {
 	) throws Exception {
 
 		ResultVO resultVO = new ResultVO();
-
-		beanValidator.validate(bdUseVO, bindingResult);
-
-		if (bindingResult.hasErrors()) {
-			resultVO.setResultCode(ResponseCode.INPUT_CHECK_ERROR.getCode());
-			resultVO.setResultMessage(ResponseCode.INPUT_CHECK_ERROR.getMessage());
-			return resultVO;
-		}
 
 		if ("CMMNTY".equals(bdUseVO.getTrgetType())) {
 			bdUseVO.setRegistSeCode("REGC06");

@@ -49,6 +49,7 @@ public class SecurityConfig {
             "/auth/login-jwt",//JWT 로그인
             "/auth/login",//일반 로그인
             "/file", //파일 다운로드
+            "/api/**",
             
             /* swagger*/
             "/v3/api-docs/**",

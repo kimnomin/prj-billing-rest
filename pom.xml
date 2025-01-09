@@ -59,6 +59,10 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
@@ -199,18 +203,6 @@
             		<artifactId>commons-codec</artifactId>
 			<version>1.15</version>
 		</dependency>
-		
-		<dependency>
-			<groupId>commons-validator</groupId>
-			<artifactId>commons-validator</artifactId>
-			<version>1.7</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springmodules</groupId>
-			<artifactId>spring-modules-validation</artifactId>
-			<version>0.8</version>
-        	</dependency>
 
 		<dependency>
 			<groupId>org.apache.taglibs</groupId>
@@ -243,13 +235,19 @@
 			<classifier>jdk8</classifier>
 		</dependency>
 
-		<!-- mysql driver -->
+		<!-- postgresql driver -->
+		<dependency>
+				<groupId>org.postgresql</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>42.7.2</version>
+		</dependency>
 
-        <dependency>
+		<!-- mysql driver -->
+        <!-- <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.33</version>
-        </dependency>
+        </dependency> -->
 
 		<!-- oracle 10g driver -->
 		<!--
@@ -287,13 +285,6 @@
 		</dependency>
 		-->
 
-		<!-- validator -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>7.0.4.Final</version>
-		</dependency>
-
 		<!-- log4jdbc driver -->
 		<dependency>
 			<groupId>com.googlecode.log4jdbc</groupId>
@@ -306,12 +297,18 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
+		<dependency>
+			<groupId>org.bgee.log4jdbc-log4j2</groupId>
+			<artifactId>log4jdbc-log4j2-jdbc4</artifactId>
+			<version>1.16</version>
+		</dependency>
 		
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
 		</dependency>
-		
+
 		<!-- JWT 2022.07.27 -->
 		<dependency>
     		<groupId>io.jsonwebtoken</groupId>

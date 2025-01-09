@@ -18,6 +18,7 @@ public class ResultVO {
 	@Schema(description = "응답 메시지")
 	private String resultMessage = "OK";
 	private Map<String, Object> result = new HashMap<String, Object>();
+	private Object data;
 
 	public void putResult(String key, Object value) {
 		result.put(key, value);

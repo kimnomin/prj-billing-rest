@@ -69,9 +69,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Tag(name="EgovIndvdlSchdulManageApiController",description = "일정관리")
 public class EgovIndvdlSchdulManageApiController {
 
-	@Autowired
-	private DefaultBeanValidator beanValidator;
-
 	/** EgovMessageSource */
 	@Resource(name = "egovMessageSource")
 	EgovMessageSource egovMessageSource;
@@ -208,15 +205,6 @@ public class EgovIndvdlSchdulManageApiController {
 	) throws Exception {
 
 		ResultVO resultVO = new ResultVO();
-
-		//서버  validate 체크
-		beanValidator.validate(indvdlSchdulManageVO, bindingResult);
-		if (bindingResult.hasErrors()) {
-
-			resultVO.setResultCode(ResponseCode.INPUT_CHECK_ERROR.getCode());
-			resultVO.setResultMessage(ResponseCode.INPUT_CHECK_ERROR.getMessage());
-			return resultVO;
-		}
 
 		// 첨부파일 관련 첨부파일ID 생성
 		List<FileVO> _result = null;
@@ -396,17 +384,6 @@ public class EgovIndvdlSchdulManageApiController {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 
 
-		//서버  validate 체크
-		indvdlSchdulManageVO.setSchdulId(schdulId);
-		beanValidator.validate(indvdlSchdulManageVO, bindingResult);
-		if (bindingResult.hasErrors()) {
-
-			resultVO.setResult(resultMap);
-			resultVO.setResultCode(ResponseCode.INPUT_CHECK_ERROR.getCode());
-			resultVO.setResultMessage(ResponseCode.INPUT_CHECK_ERROR.getMessage());
-
-			return resultVO;
-		}
 
 		/* *****************************************************************
 		// 아이디 설정

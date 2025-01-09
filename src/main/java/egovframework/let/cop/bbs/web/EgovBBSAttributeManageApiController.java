@@ -76,9 +76,6 @@ public class EgovBBSAttributeManageApiController {
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
 
-	/** DefaultBeanValidator */
-	@Autowired
-	private DefaultBeanValidator beanValidator;
 
 	/** EgovMessageSource */
 	@Resource(name = "egovMessageSource")
@@ -218,29 +215,7 @@ public class EgovBBSAttributeManageApiController {
 		ResultVO resultVO = new ResultVO();
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 
-		beanValidator.validate(boardMasterVO, bindingResult);
-		if (bindingResult.hasErrors()) {
 
-			ComDefaultCodeVO vo = new ComDefaultCodeVO();
-
-			vo.setCodeId("COM004");
-
-			List<?> codeResult = cmmUseService.selectCmmCodeDetail(vo);
-
-			resultMap.put("typeList", codeResult);
-
-			vo.setCodeId("COM009");
-
-			codeResult = cmmUseService.selectCmmCodeDetail(vo);
-
-			resultMap.put("attrbList", codeResult);
-
-			resultVO.setResult(resultMap);
-			resultVO.setResultCode(ResponseCode.INPUT_CHECK_ERROR.getCode());
-			resultVO.setResultMessage(ResponseCode.INPUT_CHECK_ERROR.getMessage());
-			
-			return resultVO;
-		}
 
 		boardMasterVO.setFrstRegisterId(loginVO.getUniqId());
 		boardMasterVO.setUseAt("Y");
@@ -287,19 +262,6 @@ public class EgovBBSAttributeManageApiController {
 			) throws Exception {
 		ResultVO resultVO = new ResultVO();
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-
-		beanValidator.validate(boardMasterVO, bindingResult);
-
-		if (bindingResult.hasErrors()) {
-			BoardMasterVO vo = bbsAttrbService.selectBBSMasterInf(boardMasterVO);
-
-			resultMap.put("BoardMasterVO", vo);
-
-			resultVO.setResult(resultMap);
-			resultVO.setResultCode(ResponseCode.INPUT_CHECK_ERROR.getCode());
-			resultVO.setResultMessage(ResponseCode.INPUT_CHECK_ERROR.getMessage());
-			return resultVO;
-		}
 
 		boardMasterVO.setLastUpdusrId(loginVO.getUniqId());
 		boardMasterVO.setPosblAtchFileSize(propertyService.getString("posblAtchFileSize"));

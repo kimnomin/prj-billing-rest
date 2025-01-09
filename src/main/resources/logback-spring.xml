@@ -64,9 +64,9 @@
 	<logger name="java.sql" level="${LOG_LEVEL}" />
 	<logger name="egovframework" level="${LOG_LEVEL}" />
 	<logger name="org.egovframe" level="${LOG_LEVEL}" />
-	<logger name="jdbc.sqltiming" level="${LOG_LEVEL}" />
+	<logger name="jdbc.sqlonly" level="${LOG_LEVEL}" />
+	<logger name="jdbc.sqltiming" level="${LOG_LEVEL}" />	
 	<logger name="org.springframework" level="${LOG_LEVEL}" />
-
 
 	<!-- 로그 전역 세팅 -->
 	<root level="${LOG_LEVEL}">

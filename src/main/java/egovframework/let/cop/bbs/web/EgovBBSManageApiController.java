@@ -109,8 +109,6 @@ public class EgovBBSManageApiController {
 	//SHT-CUSTOMIZING//private EgovBBSScrapService bbsScrapService;
 	////-------------------------------
 
-	@Autowired
-	private DefaultBeanValidator beanValidator;
 	
 	/**
 	 * 게시판 마스터 상세내용을 조회한다.
@@ -348,14 +346,6 @@ public class EgovBBSManageApiController {
 
 		String atchFileId = boardVO.getAtchFileId().replaceAll("\\s", "");
 
-		beanValidator.validate(boardVO, bindingResult);
-		if (bindingResult.hasErrors()) {
-
-			resultVO.setResultCode(ResponseCode.INPUT_CHECK_ERROR.getCode());
-			resultVO.setResultMessage(ResponseCode.INPUT_CHECK_ERROR.getMessage());
-
-			return resultVO;
-		}
 	
 		final Map<String, MultipartFile> files = multiRequest.getFileMap();
 		if (!files.isEmpty()) {
@@ -418,14 +408,6 @@ public class EgovBBSManageApiController {
 		LoginVO user = new LoginVO();
 		user.setUniqId("USRCNFRM_00000000000");
 
-		beanValidator.validate(boardVO, bindingResult);
-		if (bindingResult.hasErrors()) {
-			resultVO.setResultCode(ResponseCode.INPUT_CHECK_ERROR.getCode());
-			resultVO.setResultMessage(ResponseCode.INPUT_CHECK_ERROR.getMessage());
-
-			return resultVO;
-		}
-	
 		List<FileVO> result = null;
 		String atchFileId = "";
 
@@ -482,14 +464,6 @@ public class EgovBBSManageApiController {
 		LoginVO user = new LoginVO();
 		user.setUniqId("USRCNFRM_00000000000");
 
-		beanValidator.validate(boardVO, bindingResult);
-		if (bindingResult.hasErrors()) {
-			resultVO.setResultCode(ResponseCode.INPUT_CHECK_ERROR.getCode());
-			resultVO.setResultMessage(ResponseCode.INPUT_CHECK_ERROR.getMessage());
-
-			return resultVO;
-		}
-		
 		final Map<String, MultipartFile> files = multiRequest.getFileMap();
 		String atchFileId = "";
 
